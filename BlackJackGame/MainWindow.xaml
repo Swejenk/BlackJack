@@ -1,0 +1,148 @@
+﻿<Window x:Class="BlackJackGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:v="clr-namespace:BlackJackGame"
+        xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1089" Background="#FF0F9C23">
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Button x:Name="BtnNewPlayerJoin" Content="Join" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="160" Opacity="0.5" Height="80" FontSize="36" Click="BtnNewPlayerJoin_Click" />
+        <Button x:Name="BtnStartRound" Content="Start round" HorizontalAlignment="Left" Margin="435,20,0,0" VerticalAlignment="Top" Width="75" Click="BtnStartRound_Click"/>
+        <TextBox x:Name="TxtDealerStatus" Text="{Binding DealerStatus.Status}" HorizontalAlignment="Left" Height="23" Margin="585,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="TxtDealerHandValue" Text="{Binding DealerStatus.HandValue}" HorizontalAlignment="Left" Height="23" Margin="685,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+        <ListView ItemsSource="{Binding DealerCards}" x:Name="LstDisplayDealerCards"  HorizontalAlignment="Left" Height="137" Margin="585,73,0,0" VerticalAlignment="Top" Width="200">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="GameCard" Width="100" DisplayMemberBinding="{Binding GameCard}"/>
+                    <GridViewColumn Header="CardNumber" Width="100" DisplayMemberBinding="{Binding CardNumber}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ItemsControl ItemsSource="{Binding DealerCards}" HorizontalAlignment="Left"  Height="165" Margin="375,45,0,0" VerticalAlignment="Top" Width="200" Background="#FF59CD40">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding CardImageName}" Height="80" Width="60" Margin="0,0,-30,0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+        
+
+        <Label x:Name="LblCardsLeftInDeck" Content="Cards left in deck" HorizontalAlignment="Left" Margin="833,50,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblCardsLeftInDeckCounter" Content="{Binding CardsLeftInDeckCounter}" HorizontalAlignment="Left" Margin="843,76,0,0" VerticalAlignment="Top" RenderTransformOrigin="0,5"/>
+        <Button x:Name="BtnShuffleDeck" Content="Shuffle" HorizontalAlignment="Left" Margin="843,95,0,0" VerticalAlignment="Top" Width="75" Click="BtnShuffleDeck_Click"/>
+        <Label x:Name="LblShuffleInfo" Content="Deck has been shuffled" HorizontalAlignment="Left" Margin="810,120,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+
+        <ListView ItemsSource="{Binding Players}" x:Name="LstDisplayPlayerStatus" HorizontalAlignment="Left" Height="231" Margin="315,215,0,0" VerticalAlignment="Top" Width="auto">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nr" Width="50" DisplayMemberBinding="{Binding Nr}" />
+                    <GridViewColumn Header="Player" Width="100" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding PlayerStatus.Status}" />
+                    <GridViewColumn Header="HandValue" Width="90" DisplayMemberBinding="{Binding PlayerStatus.HandValue}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="Player1TxtName" HorizontalAlignment="Left" Height="23" Margin="10,480,0,0" TextWrapping="Wrap" Text="Player 1 name" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Player1LblName" Content="Name" HorizontalAlignment="Left" Margin="10,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Button x:Name="Player1BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="130,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="1" Click="BtnSaveName_Click" />
+        <Button x:Name="Player1BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="10,508,0,0" VerticalAlignment="Top" Width="75" Tag="1" Click="BtnDeal_Click"/>
+        <Button x:Name="Player1BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="90,508,0,0" VerticalAlignment="Top" Width="75" Tag="1" Click="BtnHold_Click"/>
+        <ItemsControl x:Name="Player1" ItemsSource="{Binding Players[0].PlayerCards}" HorizontalAlignment="Left" Height="165" Margin="10,533,0,0" VerticalAlignment="Top" Width="200" Background="#FF59CD40">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding CardImageName}" Height="80" Width="60" Margin="0,0,-30,0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBox x:Name="Player2TxtName" HorizontalAlignment="Left" Height="23" Margin="225,480,0,0" TextWrapping="Wrap" Text="Player 2 name" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Player2LblName" Content="Name" HorizontalAlignment="Left" Margin="210,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Button x:Name="Player2BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="345,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="2" Click="BtnSaveName_Click" />
+        <Button x:Name="Player2BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="225,508,0,0" VerticalAlignment="Top" Width="75" Tag="2" Click="BtnDeal_Click"/>
+        <Button x:Name="Player2BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="305,508,0,0" VerticalAlignment="Top" Width="75" Tag="2" Click="BtnHold_Click"/>
+        <ItemsControl x:Name="Player2" ItemsSource="{Binding Players[1].PlayerCards}" HorizontalAlignment="Left" Height="165" Margin="225,533,0,0" VerticalAlignment="Top" Width="200" Background="#FF59CD40" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding CardImageName}" Height="80" Width="60" Margin="0,0,-30,0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBox x:Name="Player3TxtName" HorizontalAlignment="Left" Height="23" Margin="439,480,0,0" TextWrapping="Wrap" Text="Player 3 name" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Player3LblName" Content="Name" HorizontalAlignment="Left" Margin="410,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Button x:Name="Player3BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="559,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="3" Click="BtnSaveName_Click" />
+        <Button x:Name="Player3BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="439,508,0,0" VerticalAlignment="Top" Width="75" Tag="3" Click="BtnDeal_Click"/>
+        <Button x:Name="Player3BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="519,508,0,0" VerticalAlignment="Top" Width="75" Tag="3" Click="BtnHold_Click"/>
+        <ItemsControl x:Name="Player3" ItemsSource="{Binding Players[2].PlayerCards}" HorizontalAlignment="Left" Height="165" Margin="439,533,0,0" VerticalAlignment="Top" Width="200" Background="#FF59CD40">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding CardImageName}" Height="80" Width="60" Margin="0,0,-30,0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBox x:Name="Player4TxtName" HorizontalAlignment="Left" Height="23" Margin="652,480,0,0" TextWrapping="Wrap" Text="Player 4 name" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Player4LblName" Content="Name" HorizontalAlignment="Left" Margin="610,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Button x:Name="Player4BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="772,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="4" Click="BtnSaveName_Click" />
+        <Button x:Name="Player4BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="652,508,0,0" VerticalAlignment="Top" Width="75" Tag="4" Click="BtnDeal_Click"/>
+        <Button x:Name="Player4BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="732,508,0,0" VerticalAlignment="Top" Width="75" Tag="4" Click="BtnHold_Click"/>
+        <ItemsControl x:Name="Player4" ItemsSource="{Binding Players[3].PlayerCards}" HorizontalAlignment="Left" Height="165" Margin="652,533,0,0" VerticalAlignment="Top" Width="200"  Background="#FF59CD40">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding CardImageName}" Height="80" Width="60" Margin="0,0,-30,0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBox x:Name="Player5TxtName" HorizontalAlignment="Left" Height="23" Margin="865,480,0,0" TextWrapping="Wrap" Text="Player 5 name" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Player5LblName" Content="Name" HorizontalAlignment="Left" Margin="810,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Button x:Name="Player5BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="985,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="5" Click="BtnSaveName_Click" />
+        <Button x:Name="Player5BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="865,508,0,0" VerticalAlignment="Top" Width="75" Tag="5" Click="BtnDeal_Click"/>
+        <Button x:Name="Player5BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="945,508,0,0" VerticalAlignment="Top" Width="75" Tag="5" Click="BtnHold_Click"/>
+        <ItemsControl x:Name="Player5" ItemsSource="{Binding Players[4].PlayerCards}" HorizontalAlignment="Left" Height="165" Margin="865,533,0,0" VerticalAlignment="Top" Width="200" Background="#FF59CD40">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding CardImageName}" Height="80" Width="60" Margin="0,0,-30,0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+
+    </Grid>
+</Window>
