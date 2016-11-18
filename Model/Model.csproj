@@ -52,8 +52,6 @@
     <Compile Include="GameObjects\Card.cs" />
     <Compile Include="GameObjects\GameStatus.cs" />
     <Compile Include="GameObjects\Player.cs" />
-    <Compile Include="Handlers\PlayerHandler.cs" />
-    <Compile Include="Handlers\RoundHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

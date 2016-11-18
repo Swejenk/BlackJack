@@ -4,7 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/**
+ * Jens Malm 
+ * 2016-09
+ * BlackJackGame
+ **/
 namespace Model.GameObjects
 {
     public class GameStatus: INotifyPropertyChanged

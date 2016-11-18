@@ -32,6 +32,10 @@ namespace ViewModel
             _turnCommands = new TurnCommands();
             _gameCommands = new GameCommands();
         }
+        /// <summary>
+        /// Check if table is full
+        /// </summary>
+        /// <returns></returns>
         public bool TableIsFull()
         {
             if (Players.Count == 5)
@@ -43,12 +47,18 @@ namespace ViewModel
                 return false;
             }
         }
+        /// <summary>
+        /// Add new player
+        /// </summary>
         public void AddPlayer()
         {
             int playerNr = Players.Count() + 1;
             Player newPlayer = new Player() { Nr = playerNr,PlayerStatus = new GameStatus() {Status= "Joined" }, Name = "Player" + playerNr };
             Players.Add(newPlayer);
         }
+        /// <summary>
+        /// Start round
+        /// </summary>
         public void StartRound()
         {
             ClearCardsFromDealerAndPlayer();
@@ -56,7 +66,9 @@ namespace ViewModel
             ResetDealerStatus();
             RoundStartDealCards();
         }
-
+        /// <summary>
+        /// Reset players status by start of new round
+        /// </summary>
         private void ResetPlayerStatus()
         {
             foreach (var player in Players)
@@ -65,11 +77,17 @@ namespace ViewModel
                 player.PlayerStatus.HandValue = 0;
             }
         }
+        /// <summary>
+        /// Reset dealer status by start of new round
+        /// </summary>
         private void ResetDealerStatus()
         {
             DealerStatus = new GameStatus();
             RaisePropertyChanged("DealerStatus");
         }
+        /// <summary>
+        /// Clear all cards from dealer and player by start of new round
+        /// </summary>
         private void ClearCardsFromDealerAndPlayer()
         {
             DealerCards.Clear();
@@ -80,7 +98,9 @@ namespace ViewModel
             }
 
         }
-
+        /// <summary>
+        /// Deal card by start of new round
+        /// </summary>
         private void RoundStartDealCards()
         {
             foreach (var player in Players)
@@ -97,12 +117,20 @@ namespace ViewModel
             RaisePropertyChanged("CardsLeftInDeckCounter");
             RoundStarted = true;
         }
-
+        /// <summary>
+        /// Player has changed name
+        /// </summary>
+        /// <param name="playerName"></param>
+        /// <param name="playerNr"></param>
         public void PlayerNameChanged(string playerName, int playerNr)
         {
             var player = Players.Where(x => x.Nr == playerNr).FirstOrDefault();
             player.Name = playerName;
         }
+        /// <summary>
+        /// Player clicks deal
+        /// </summary>
+        /// <param name="playerNr"></param>
         public void PlayerActionDeal(int playerNr)
         {
             if (RoundStarted)
@@ -117,7 +145,10 @@ namespace ViewModel
             }
 
         }
-
+        /// <summary>
+        /// Player clicks hold
+        /// </summary>
+        /// <param name="playerNr"></param>
         public void PlayerActionHold(int playerNr)
         {
             if (RoundStarted)
@@ -130,7 +161,9 @@ namespace ViewModel
                 }
             }
         }
-
+        /// <summary>
+        /// Check if dealer should get cards or end turn
+        /// </summary>
         private void DealerAction()
         {
             if (_turnCommands.CheckIfDealersTurn(Players.Select(x=>x.PlayerStatus.Status).ToList()))
@@ -143,7 +176,9 @@ namespace ViewModel
                 FinishTurn();
             }
         }
-
+        /// <summary>
+        /// Get status for dealer and player by end of turn
+        /// </summary>
         private void FinishTurn()
         {
             DealerStatus = _gameCommands.GetDealerStatus(DealerCards.ToList());
@@ -152,7 +187,9 @@ namespace ViewModel
             RaisePropertyChanged("DealerStatus");
             RoundStarted = false;
         }
-
+        /// <summary>
+        /// Dealer reveal card and deals new card if handvalue is lower than 17
+        /// </summary>
         private void DealerTurnAction()
         {
             var dealerHasHiddenCard = DealerCards.Any(x => x.HideCard == true);
@@ -167,7 +204,9 @@ namespace ViewModel
 
             RaisePropertyChanged("CardsLeftInDeckCounter");
         }
-
+        /// <summary>
+        /// Set hidden card to true
+        /// </summary>
         private void RevealHiddenDealerCard()
         {
             var hiddenCard = DealerCards.Where(x => x.HideCard == true).ToList();
@@ -178,7 +217,10 @@ namespace ViewModel
                 DealerCards.Add(card);
             }
         }
-
+        /// <summary>
+        /// Player clicks shuffle
+        /// </summary>
+        /// <returns></returns>
         public bool InitiatePlayerShuffle()
         {
             return _turnCommands.ManualShuffle();

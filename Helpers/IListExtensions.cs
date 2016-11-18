@@ -34,14 +34,24 @@ namespace IListExtensions
 
             return list;
         }
-
+        /// <summary>
+        /// Pop extension for List<T>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static T Pop<T>(this IList<T> list)
         {
             var local = list[list.Count - 1];
             list.RemoveAt(list.Count - 1);
             return local;
         }
-
+        /// <summary>
+        /// Push extension for List<T>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="item"></param>
         public static void Push<T>(this List<T> list, T item)
         {
             list.Add(item);

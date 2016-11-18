@@ -17,19 +17,26 @@ namespace Model.Commands
         {
             AddDeck();
         }
-
+        /// <summary>
+        /// Return cards left in deck
+        /// </summary>
+        /// <returns></returns>
         public int CardsLeftInActiveDeck()
         {
             return decks[0].GetCardsLeftInDeck();
         }
-
+        /// <summary>
+        /// Add new deck
+        /// </summary>
         public void AddDeck()
         {
             DeckCommands deck = new DeckCommands();
             decks.Add(deck);
             ShuffleDecks();
         }
-
+        /// <summary>
+        /// Shuffle deck
+        /// </summary>
         public void ShuffleDecks()
         {
             foreach (DeckCommands deck in decks)
@@ -37,20 +44,9 @@ namespace Model.Commands
                 deck.ShuffleDeck();
             }
         }
-
-        public void TestDealDeck()
-        {
-
-            for (int i = 0; i < 104; i++)
-            {
-                Card c = DealCard();
-                Console.WriteLine("Räknare: {0} Kortnummer: {1} Suit: {2} Värde: {3}", i, c.CardNumber, c.Suit, c.Value);
-                System.Threading.Thread.Sleep(500);
-            }
-        }
-
+       
         /// <summary>
-        /// Returnerar ett kort, om en kortlek är tom så gå till nästa eller sluta
+        /// Deal card, if deck is empty go to next deck
         /// </summary>
         /// <returns></returns>
         public Card DealCard()
@@ -65,6 +61,10 @@ namespace Model.Commands
 
             return card;
         }
+        /// <summary>
+        /// Deal a hidden card
+        /// </summary>
+        /// <returns></returns>
         public Card DealHiddenCard()
         {
             Card card = new Card();
@@ -78,6 +78,10 @@ namespace Model.Commands
 
             return card;
         }
+        /// <summary>
+        /// Get next deck
+        /// </summary>
+        /// <returns></returns>
         private DeckCommands GetNextDeck()
         {
             DeckCommands deck =  new DeckCommands();

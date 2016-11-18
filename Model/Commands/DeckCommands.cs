@@ -21,7 +21,9 @@ namespace Model.Commands
             cards = new List<Card>();
             LoadDeck();
         }
-
+        /// <summary>
+        /// Create a deck
+        /// </summary>
         private void LoadDeck()
         {
             cards.Clear();
@@ -31,7 +33,12 @@ namespace Model.Commands
                 cardNumber = GetCardsForSuit(cardNumber, suit);
             }
         }
-
+        /// <summary>
+        /// Add cards to deck
+        /// </summary>
+        /// <param name="cardNumber"></param>
+        /// <param name="suit"></param>
+        /// <returns></returns>
         private int GetCardsForSuit(int cardNumber, int suit)
         {
             for (int card = 1; card < 14; card++)
@@ -51,7 +58,9 @@ namespace Model.Commands
 
             return cardNumber;
         }
-
+        /// <summary>
+        /// Shuffle deck
+        /// </summary>
         public void ShuffleDeck()
         {
             if (cards != null)
@@ -59,17 +68,27 @@ namespace Model.Commands
                 cards.Shuffle();                
             }
         }
-
+        /// <summary>
+        /// Find card by cardnumber
+        /// </summary>
+        /// <param name="cardNumber"></param>
+        /// <returns></returns>
         public Card FindCardByCardnumber(int cardNumber)
         {
             return cards.Where(x => x.CardNumber == cardNumber).FirstOrDefault();
         }
-
+        /// <summary>
+        /// Get cards left in deck
+        /// </summary>
+        /// <returns></returns>
         public int GetCardsLeftInDeck()
         {
             return cards.Count();
         }
-
+        /// <summary>
+        /// Return a card
+        /// </summary>
+        /// <returns></returns>
         public Card GetCard()
         {
             Card card = null;
@@ -77,7 +96,10 @@ namespace Model.Commands
             RemoveCardFromList(card);
             return card;
         }
-
+        /// <summary>
+        /// Remove card from deck
+        /// </summary>
+        /// <param name="card"></param>
         private void RemoveCardFromList(Card card)
         {
             if (card != null)

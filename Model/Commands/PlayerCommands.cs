@@ -17,6 +17,11 @@ namespace Model.Commands
         {
             players = new List<Player>();
         }
+        /// <summary>
+        /// Check if player exist
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns></returns>
         private bool PlayerNameExists(Player player)
         {
                 var result = players.Where(x => x.Name == player.Name);
@@ -26,6 +31,11 @@ namespace Model.Commands
                 }
             return false;
         }
+        /// <summary>
+        /// Add new player
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns></returns>
         public bool AddNewPlayer(Player player)
         {
             if(!PlayerNameExists(player))

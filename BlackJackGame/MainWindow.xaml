@@ -12,7 +12,7 @@
     </Window.DataContext>
     <Grid>
         <Button x:Name="BtnNewPlayerJoin" Content="Join" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="160" Opacity="0.5" Height="80" FontSize="36" Click="BtnNewPlayerJoin_Click" />
-        <Button x:Name="BtnStartRound" Content="Start round" HorizontalAlignment="Left" Margin="435,20,0,0" VerticalAlignment="Top" Width="75" Click="BtnStartRound_Click"/>
+        <Button x:Name="BtnStartRound" Content="Waiting for players" HorizontalAlignment="Left" Margin="177,10,0,0" VerticalAlignment="Top" Width="123" FontSize="10" Click="BtnStartRound_Click" Height="80" Opacity="0.5" IsEnabled="False" />
         <TextBox x:Name="TxtDealerStatus" Text="{Binding DealerStatus.Status}" HorizontalAlignment="Left" Height="23" Margin="585,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
         <TextBox x:Name="TxtDealerHandValue" Text="{Binding DealerStatus.HandValue}" HorizontalAlignment="Left" Height="23" Margin="685,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
         <ListView ItemsSource="{Binding DealerCards}" x:Name="LstDisplayDealerCards"  HorizontalAlignment="Left" Height="137" Margin="585,73,0,0" VerticalAlignment="Top" Width="200">
@@ -54,7 +54,7 @@
             </ListView.View>
         </ListView>
         <TextBox x:Name="Player1TxtName" HorizontalAlignment="Left" Height="23" Margin="10,480,0,0" TextWrapping="Wrap" Text="Player 1 name" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="Player1LblName" Content="Name" HorizontalAlignment="Left" Margin="10,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Label x:Name="Player1LblName" Content="Name" HorizontalAlignment="Left" Margin="10,477,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button x:Name="Player1BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="130,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="1" Click="BtnSaveName_Click" />
         <Button x:Name="Player1BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="10,508,0,0" VerticalAlignment="Top" Width="75" Tag="1" Click="BtnDeal_Click"/>
         <Button x:Name="Player1BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="90,508,0,0" VerticalAlignment="Top" Width="75" Tag="1" Click="BtnHold_Click"/>
@@ -72,7 +72,7 @@
         </ItemsControl>
 
         <TextBox x:Name="Player2TxtName" HorizontalAlignment="Left" Height="23" Margin="225,480,0,0" TextWrapping="Wrap" Text="Player 2 name" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="Player2LblName" Content="Name" HorizontalAlignment="Left" Margin="210,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Label x:Name="Player2LblName" Content="Name" HorizontalAlignment="Left" Margin="225,477,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button x:Name="Player2BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="345,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="2" Click="BtnSaveName_Click" />
         <Button x:Name="Player2BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="225,508,0,0" VerticalAlignment="Top" Width="75" Tag="2" Click="BtnDeal_Click"/>
         <Button x:Name="Player2BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="305,508,0,0" VerticalAlignment="Top" Width="75" Tag="2" Click="BtnHold_Click"/>
@@ -90,7 +90,7 @@
         </ItemsControl>
 
         <TextBox x:Name="Player3TxtName" HorizontalAlignment="Left" Height="23" Margin="439,480,0,0" TextWrapping="Wrap" Text="Player 3 name" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="Player3LblName" Content="Name" HorizontalAlignment="Left" Margin="410,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Label x:Name="Player3LblName" Content="Name" HorizontalAlignment="Left" Margin="439,476,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button x:Name="Player3BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="559,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="3" Click="BtnSaveName_Click" />
         <Button x:Name="Player3BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="439,508,0,0" VerticalAlignment="Top" Width="75" Tag="3" Click="BtnDeal_Click"/>
         <Button x:Name="Player3BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="519,508,0,0" VerticalAlignment="Top" Width="75" Tag="3" Click="BtnHold_Click"/>
@@ -108,7 +108,7 @@
         </ItemsControl>
 
         <TextBox x:Name="Player4TxtName" HorizontalAlignment="Left" Height="23" Margin="652,480,0,0" TextWrapping="Wrap" Text="Player 4 name" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="Player4LblName" Content="Name" HorizontalAlignment="Left" Margin="610,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Label x:Name="Player4LblName" Content="Name" HorizontalAlignment="Left" Margin="652,477,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button x:Name="Player4BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="772,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="4" Click="BtnSaveName_Click" />
         <Button x:Name="Player4BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="652,508,0,0" VerticalAlignment="Top" Width="75" Tag="4" Click="BtnDeal_Click"/>
         <Button x:Name="Player4BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="732,508,0,0" VerticalAlignment="Top" Width="75" Tag="4" Click="BtnHold_Click"/>
@@ -126,7 +126,7 @@
         </ItemsControl>
 
         <TextBox x:Name="Player5TxtName" HorizontalAlignment="Left" Height="23" Margin="865,480,0,0" TextWrapping="Wrap" Text="Player 5 name" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="Player5LblName" Content="Name" HorizontalAlignment="Left" Margin="810,533,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Label x:Name="Player5LblName" Content="Name" HorizontalAlignment="Left" Margin="865,477,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button x:Name="Player5BtnSaveName" Content="Save" HorizontalAlignment="Left" Margin="985,480,0,0" VerticalAlignment="Top" Width="75" Height="23"  Tag="5" Click="BtnSaveName_Click" />
         <Button x:Name="Player5BtnDeal" Content="Deal" HorizontalAlignment="Left" Margin="865,508,0,0" VerticalAlignment="Top" Width="75" Tag="5" Click="BtnDeal_Click"/>
         <Button x:Name="Player5BtnHold" Content="Hold" HorizontalAlignment="Left" Margin="945,508,0,0" VerticalAlignment="Top" Width="75" Tag="5" Click="BtnHold_Click"/>

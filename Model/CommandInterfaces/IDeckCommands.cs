@@ -1,5 +1,9 @@
 ﻿using Model.GameObjects;
-
+/**
+ * Jens Malm 
+ * 2016-09
+ * BlackJackGame
+ **/
 namespace Model.CommandInterfaces
 {
     public interface IDeckCommands

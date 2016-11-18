@@ -32,7 +32,11 @@ namespace BlackJackGame
             InitializeComponent();
             _mainWindowViewModel = (MainWindowViewModel)base.DataContext;
         }
-
+        /// <summary>
+        /// Start round click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnStartRound_Click(object sender, RoutedEventArgs e)
         {
             _mainWindowViewModel.StartRound();
@@ -40,17 +44,30 @@ namespace BlackJackGame
 
             BtnNewPlayerJoin.Visibility = Visibility.Hidden;
         }
-
+        /// <summary>
+        /// new player join click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnNewPlayerJoin_Click(object sender, RoutedEventArgs e)
         {
             _mainWindowViewModel.AddPlayer();
+            if (BtnStartRound.IsEnabled == false)
+            {
+                BtnStartRound.Content = "Start round";
+                BtnStartRound.IsEnabled = true;
+            }
             if (_mainWindowViewModel.TableIsFull())
             {
-                BtnNewPlayerJoin.Visibility = Visibility.Hidden;
+                BtnNewPlayerJoin.Visibility = Visibility.Hidden;              
             }
 
         }
-
+        /// <summary>
+        /// save name click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSaveName_Click(object sender, RoutedEventArgs e)
         {
             int PlayerNr = int.Parse(((Button)sender).Tag.ToString());
@@ -65,7 +82,11 @@ namespace BlackJackGame
             LblName.Content = txtName.Text;
             LblName.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// Deal cards click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnDeal_Click(object sender, RoutedEventArgs e)
         {
             int PlayerNr = int.Parse(((Button)sender).Tag.ToString());
@@ -76,7 +97,11 @@ namespace BlackJackGame
                 BtnNewPlayerJoin.Visibility = Visibility.Visible;
             }
         }
-
+        /// <summary>
+        /// hold click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnHold_Click(object sender, RoutedEventArgs e)
         {
             int PlayerNr = int.Parse(((Button)sender).Tag.ToString());
@@ -90,7 +115,11 @@ namespace BlackJackGame
                 }
             }
         }
-
+        /// <summary>
+        /// Shuffle deck click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnShuffleDeck_Click(object sender, RoutedEventArgs e)
         {
             try
